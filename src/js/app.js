@@ -7,7 +7,9 @@
       'ngAnimate',
       'ui.materialize',
       'alApp.config',
-      'alApp.components.nav'
+      'alApp.components.nav',
+      'alApp.components.ajax',
+      'alApp.components.products'
     ]);
 
 })();
