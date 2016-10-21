@@ -5,7 +5,7 @@ const jshint = require('gulp-jshint');
 const jscs = require('gulp-jscs');
 const connect = require('gulp-connect');
 const runSequence = require('run-sequence');
-
+var history = require('connect-history-api-fallback');
 
 // *** tasks *** ///
 
@@ -13,7 +13,12 @@ gulp.task('connect', () => {
   connect.server({
     root: './src/',
     port: 8888,
-    livereload: true
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [
+        history({})
+      ];
+    }
   });
 });
 

@@ -6,21 +6,40 @@
     .module('alApp.components.nav')
     .directive('alNav', navDirective);
 
-  navDirective.$inject = ['$scope', '$location', ''];
 
-  function navDirective($scope) {
+  function navDirective() {
     /*jshint validthis: true */
     return {
       restrict: 'E',
-      controller: function() {
-
-      },
-      link: function(scope, elem, attr, ctrl) {
-
-      }
+      bindToController: true,
+      controller: Controller,
+      controllerAs: 'navCtrl',
+      link: link,
+      templateUrl: 'js/components/navbar/view.nav.html'
 
     };
 
-  }
+    function link(scope, elem, attr, vm) {
 
+    }
+  }
+  Controller.$inject = ['$scope', '$location'];
+  function Controller($scope, $location) {
+
+    this.home = () => {
+      $location.path('/');
+    };
+
+    this.about = () => {
+      $location.path('/about');
+    };
+
+    this.contact = () => {
+      $location.path('/contact');
+    };
+
+    this.cart = () => {
+      $location.path('/cart');
+    };
+  }
 })();

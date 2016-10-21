@@ -3,6 +3,6 @@
   'use strict';
 
   angular
-    .module('alApp.components.nav', []);
+    .module('alApp.components.ajax', []);
 
 })();

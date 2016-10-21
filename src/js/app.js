@@ -2,11 +2,11 @@
 
   'use strict';
   angular
-    .module('myApp', [
+    .module('alApp', [
       'ngRoute',
       'ngAnimate',
       'ui.materialize',
-      'myApp.config',
+      'alApp.config',
       'alApp.components.nav'
     ]);
 
