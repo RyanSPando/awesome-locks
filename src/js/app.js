@@ -9,6 +9,7 @@
       'alApp.config',
       'alApp.components.nav',
       'alApp.components.ajax',
+      'alApp.components.cart',
       'alApp.components.products'
     ]);
 

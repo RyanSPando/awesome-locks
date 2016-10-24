@@ -5,9 +5,9 @@
   angular
     .module('alApp.components.ajax')
     .service('ajax', Ajax);
-    Ajax.$inject = ['$http', '$q', '$routeParams'];
+    Ajax.$inject = ['$http', '$q'];
 
-  function Ajax($http, $q, $routeParams) {
+  function Ajax($http, $q) {
     /*jshint validthis: true */
     const vm = this;
     //get all products

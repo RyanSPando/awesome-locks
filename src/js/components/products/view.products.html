@@ -1,16 +1,49 @@
 <div class="container">
-  <div class="col s12 m12" ng-repeat="product in productsCtrl.products">
-    <h2 class="header">{{product.name}}</h2>
+  <div class="col s12 m12 hoverable red lighten-5" ng-repeat="product in productsCtrl.products">
+    <h2 class="header indigo-text accent-3">{{product.name}}</h2>
     <div class="card horizontal">
       <div class="card-image">
         <img ng-src="{{product.imageUrl}}">
       </div>
       <div class="card-stacked">
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
+        <div class="card-content row">
+          <div class="col s9">
+            <div>
+              <strong>Price: </strong>
+              {{product.price/100 | currency}}
+            </div>
+            <div>
+              <strong>Ingredients: </strong>
+              {{product.ingredients}}
+            </div>
+            <div>
+              <strong>Rating: </strong>
+              {{product.rating}}
+            </div>
+            <div>
+              <strong>In Stock?: </strong>
+              {{product.inStock | yes}}
+            </div>
+            <div>
+              <strong>Categories: </strong>
+            </div>
+            <div class="">
+              <ul class="browser-default col offset-s1">
+                <li class="" ng-repeat="category in product.categories">{{category}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="row">
+              <form class="" ng-submit="productsCtrl.addItem(addAmount, product)" name="formie">
+                <input type="number" class="col s5" min="1" max="product.stock" placeholder="Amount" ng-model="addAmount">
+                <button type="submit" class="waves-effect waves-light btn red accent-2 col s6 offset-s1">
+                  <span class="fa fa-shopping-cart fa-2x right" aria-hidden="true"></span>
+                  Add to Cart
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

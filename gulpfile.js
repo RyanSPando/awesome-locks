@@ -12,7 +12,7 @@ var history = require('connect-history-api-fallback');
 gulp.task('connect', () => {
   connect.server({
     root: './src/',
-    port: 8888,
+    port: 7000,
     livereload: true,
     middleware: function(connect, opt) {
       return [
