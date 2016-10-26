@@ -32,12 +32,15 @@
     vm.search = '';
     vm.orderby = '';
     vm.uniqueCategories = [];
+    console.log('controller');
 
     vm.getProducts = () => {
       var ref = firebase.database().ref();
 
       ref.on("value", function(snapshot) {
         $timeout(function() {
+          console.log('firing');
+          console.log(snapshot.val());
           vm.products = snapshot.val().products;
           vm.uniqueCategories = categories(vm.products);
          });
