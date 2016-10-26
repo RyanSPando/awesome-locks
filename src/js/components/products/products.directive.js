@@ -29,10 +29,14 @@
     const vm = this;
     vm.products = [];
     vm.amount = 1;
+    vm.search = '';
+    vm.orderby = '';
+    vm.uniqueCategories = [];
 
     vm.getProducts = () => {
       ajax.getProducts().then(productsApi => {
         vm.products = productsApi.data;
+        vm.uniqueCategories = categories(vm.products);
       });
     };
 
@@ -48,4 +52,15 @@
       return input ? 'yes' : 'no';
     };
   }
+
+  function categories(products) {
+
+    const allCategories = [];
+    products.forEach(product => product.categories.forEach(category => allCategories.push(category)));
+    return allCategories.filter(onlyUnique);
+  }
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 })();

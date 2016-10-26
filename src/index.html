@@ -41,16 +41,42 @@
       </ul>
     </div>
 
-    <!-- App -->
-    <al-sortbar class=""></al-sortbar>
+    <!-- filter -->
+    <div class="red red accent-1" top-scroll="fix-to-top">
+      <div class="row">
+        <div class="col s4">
+          <div input-field>
+            <select class="white-text" ng-model="productsCtrl.orderby" material-select watch>
+              <option selected value="">Select Cateogry</option>
+              <option ng-repeat="category in productsCtrl.uniqueCategories">{{category}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col s4 offset-2">
+          <input class="white-text select" type="text" name="name" ng-model="productsCtrl.search" placeholder="Search">
+        </div>
+      </div>
+    </div>
+
+    <!-- products and cart -->
     <al-products></al-products>
     <al-cart id="cart-out" class="side-nav rightside-navigation right-aligned" style="right: 0px; width: 500px; height: 1012px;"></al-cart>
 
     <!-- cart button -->
-    <div class="" pushpin pushpin-top="0" pushpin-offset="0" pushpin-bottom="Infinity" style="right: 0;">
-      <a href="#" class="button-collapse white-text" data-activates="cart-out" data-sidenav="right" data-menuwidth="500" data-closeonclick="false"><button class="waves-effect waves-light red accent-2 col s6 offset-s1">Shopping Cart <span class="fa fa-shopping-cart fa-3x" aria-hidden="true"></span></button></a>
+    <div class="" pushpin pushpin-top="0" pushpin-offset="0" pushpin-bottom="Infinity" style="right: 20px; z-index:4; height: 200px">
+      <a href="#" class="button-collapse white-text" data-activates="cart-out" data-sidenav="right" data-menuwidth="500" data-closeonclick="false" ng-click="cartCtrl.getCart()">
+        <button class="waves-effect waves-light red accent-2 col s9 offset-s1">
+          <ng-pluralize count="cartCtrl.cartObj.cart.length"
+            when="{'0': 'Empty',
+            'one': '1 item',
+            'other': '{} items'}">
+          </ng-pluralize>
+          <span class="fa fa-shopping-cart fa-3x" aria-hidden="true">
+          </span>
+        </button>
+      </a>
     </div>
-    
+
     <!-- dependencies -->
     <script type="text/javascript" src="js/dependencies/jquery/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="js/dependencies/angular/1.5.8/angular.min.js"></script>
@@ -75,5 +101,6 @@
     <script type="text/javascript" src="js/components/cart/cart.config.js"></script>
     <script type="text/javascript" src="js/components/cart/cart.directive.js"></script>
     <script type="text/javascript" src="js/components/cart/cart.service.js"></script>
+    <script type="text/javascript" src="js/components/topscroll/topscroll.directive.js"></script>
   </body>
 </html>
