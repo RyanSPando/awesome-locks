@@ -3,6 +3,7 @@
   'use strict';
   angular
     .module('alApp', [
+      "firebase",
       'ngRoute',
       'ngAnimate',
       'ui.materialize',

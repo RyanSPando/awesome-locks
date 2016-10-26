@@ -24,8 +24,8 @@
 
   }
 
-  Controller.$inject = ['$scope', '$location', 'ajax', 'cart'];
-  function Controller($scope, $location, ajax, cart) {
+  Controller.$inject = ['$scope', '$location', 'ajax', 'cart', '$firebaseObject', '$timeout'];
+  function Controller($scope, $location, ajax, cart, firebaseObject, $timeout) {
     const vm = this;
     vm.products = [];
     vm.amount = 1;
@@ -34,10 +34,14 @@
     vm.uniqueCategories = [];
 
     vm.getProducts = () => {
-      ajax.getProducts().then(productsApi => {
-        vm.products = productsApi.data;
-        vm.uniqueCategories = categories(vm.products);
-      });
+      var ref = firebase.database().ref();
+
+      ref.on("value", function(snapshot) {
+        $timeout(function() {
+          vm.products = snapshot.val().products;
+          vm.uniqueCategories = categories(vm.products);
+         });
+       });
     };
 
     vm.addItem = (amount, item) => {
